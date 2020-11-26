@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event_proof.user_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @event_proof.event_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @event_proof.note %>
+</p>
+
+<%= link_to 'Edit', edit_event_proof_path(@event_proof) %> |
+<%= link_to 'Back', event_proofs_path %>
