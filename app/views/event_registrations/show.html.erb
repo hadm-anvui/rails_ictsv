@@ -15,5 +15,20 @@
   <%= @event_registration.reason %>
 </p>
 
+<h2>証拠の追加</h2>
+<%= form_with(model: @event_proof, local: true) do |form| %>
+  <div class= "field">
+    <%= form.label :note, "注意" %>
+    <%= form.text_area :note %>
+    <%= form.label :image, "画像" %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :event_id, :value => @event_registration.event_id %>
+    <%= form.hidden_field :user_id, :value => @event_registration.user_id %>
+  </div>
+  <div class="actions">
+    <%= form.submit "証拠を作成する" %>
+  </div>
+<% end %>
+
 <%= link_to 'Edit', edit_event_registration_path(@event_registration) %> |
 <%= link_to 'Back', event_registrations_path %>

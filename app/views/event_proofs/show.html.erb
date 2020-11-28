@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<p id="お知らせ"><%= notice%></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @event_proof.user_id %>
+  <strong>ユーザー:</strong>
+  <%= @event_proof.user.email if @event_proof.user %>
 </p>
 
 <p>
-  <strong>Event:</strong>
-  <%= @event_proof.event_id %>
+  <strong>イベント:</strong>
+  <%= @event_proof.event.name if @event_proof.event %>
 </p>
 
 <p>
-  <strong>Note:</strong>
+  <strong>注意:</strong>
   <%= @event_proof.note %>
 </p>
 
-<%= link_to 'Edit', edit_event_proof_path(@event_proof) %> |
-<%= link_to 'Back', event_proofs_path %>
+<p>
+  <% if @event_proof.image.attached? %>
+    <strong>画像:</strong><br>
+    <%= image_tag @event_proof.image %>
+  <% end %>
+</p>
+
+<%= link_to '更新する', edit_event_proof_path(@event_proof) %> |
+<%= link_to '戻る', event_proofs_path %>
