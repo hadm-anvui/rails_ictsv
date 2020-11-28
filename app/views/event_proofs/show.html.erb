@@ -11,15 +11,15 @@
 </p>
 
 <p>
-  <strong>注意:</strong>
-  <%= @event_proof.note %>
-</p>
-
-<p>
   <% if @event_proof.image.attached? %>
     <strong>画像:</strong><br>
     <%= image_tag @event_proof.image %>
   <% end %>
+</p>
+
+<p>
+  <strong>注意:</strong>
+  <%= @event_proof.note %>
 </p>
 
 <%= link_to '更新する', edit_event_proof_path(@event_proof) %> |
