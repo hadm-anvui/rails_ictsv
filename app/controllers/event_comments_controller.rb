@@ -25,10 +25,12 @@ class EventCommentsController < ApplicationController
   # POST /event_comments.json
   def create
     @event_comment = EventComment.new(event_comment_params)
-
+    @event_comment.user_id = 1
+    
     respond_to do |format|
       if @event_comment.save
-        format.html { redirect_to @event_comment, notice: 'Event comment was successfully created.' }
+        url = "/events/" + @event_comment.event_id.to_s
+        format.html { redirect_to url, notice: 'Event comment was successfully created.' }
         format.json { render :show, status: :created, location: @event_comment }
       else
         format.html { render :new }
