@@ -10,6 +10,7 @@ class EventRegistrationsController < ApplicationController
   # GET /event_registrations/1
   # GET /event_registrations/1.json
   def show
+    @event_proof = EventProof.new
   end
 
   # GET /event_registrations/new

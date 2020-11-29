@@ -5,27 +5,51 @@
 
       <ul>
         <% event_proof.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li><%= メッセージ %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
+<%
+=begin %>
   <div class="field">
-    <%= form.label :user_id %>
+    <%= form.label :user_id, "ユーザーのID" %>
     <%= form.number_field :user_id %>
   </div>
 
   <div class="field">
-    <%= form.label :event_id %>
+    <%= form.label :event_id, "イベントのID" %>
     <%= form.number_field :event_id %>
   </div>
 
   <div class="field">
-    <%= form.label :note %>
+    <%= form.label :image, "画像" %>
+    <%= form.file_field :image %><br>
+  </div>
+  <%
+=end %>
+  <p>
+    <strong>ユーザー:</strong>
+    <%= @event_proof.user.email if @event_proof.user %>
+  </p>
+  
+  <p>
+    <strong>イベント:</strong>
+    <%= @event_proof.event.name if @event_proof.event %>
+  </p>
+  
+  <p>
+    <% if @event_proof.image.attached? %>
+      <strong>画像:</strong><br>
+      <%= image_tag @event_proof.image %>
+    <% end %>
+  </p>
+
+  <div class="field">
+    <%= form.label :note, "注意" %>
     <%= form.text_area :note %>
   </div>
-
+  
   <div class="actions">
     <%= form.submit %>
   </div>

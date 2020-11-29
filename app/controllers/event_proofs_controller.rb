@@ -28,7 +28,7 @@ class EventProofsController < ApplicationController
 
     respond_to do |format|
       if @event_proof.save
-        format.html { redirect_to @event_proof, notice: 'Event proof was successfully created.' }
+        format.html { redirect_to @event_proof, notice: 'イベントの証拠は正常に作成された。' }
         format.json { render :show, status: :created, location: @event_proof }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class EventProofsController < ApplicationController
   def update
     respond_to do |format|
       if @event_proof.update(event_proof_params)
-        format.html { redirect_to @event_proof, notice: 'Event proof was successfully updated.' }
+        format.html { redirect_to @event_proof, notice: 'イベントの証拠が正常に更新された。' }
         format.json { render :show, status: :ok, location: @event_proof }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class EventProofsController < ApplicationController
   def destroy
     @event_proof.destroy
     respond_to do |format|
-      format.html { redirect_to event_proofs_url, notice: 'Event proof was successfully destroyed.' }
+      format.html { redirect_to event_proofs_url, notice: 'イベントの証拠は正常に削除された。' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class EventProofsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_proof_params
-      params.require(:event_proof).permit(:user_id, :event_id, :note)
+      params.require(:event_proof).permit(:user_id, :event_id, :note, :image)
     end
 end
