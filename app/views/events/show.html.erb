@@ -25,6 +25,12 @@
   
 </p>
 
+<p>
+  <% if @event.image.attached? %>
+    <%= image_tag @event.image %>
+  <% end %>
+</p>
+
 <div class="card-header">Comments:</div>
   <div class="card-body">
     <ul>
@@ -33,43 +39,30 @@
       <% end %>
     </ul>
   </div>
-<p>
-  <% if @event.image.attached? %>
-    <%= image_tag @event.image %>
-  <% end %>
-</p>
 
 <% if @event.if_registed(@user.id, @event.id) != 0%>
   <%= link_to "証拠を作成する", "/event_registrations/" + @event.if_registed(@user.id, @event.id).to_s %>
 <% else %>
-  <%= link_to "イベントを登録する", "/event_registrations/new" %>
+  
+<%= form_with(model: EventRegistration.new, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.hidden_field:user_id, value:current_user.id %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :event_id, value:@event.id %>
+  </div>
+  <div class="field">
+    <%= form.label :reason %>
+    <%= form.text_area :reason %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 <% end %>
 <br>
-
-<div class="card-header">レビュー</div>
-      <div class="card-body">
-        <ul>
-          <% @event.event_comments.each do |event_comment|%>
-          　<div class="card border-light mb-3" style="max-width: 20rem;">
-              <div class="card-header"><%= event_comment.user.email %></div>
-              <div class="card-body">
-                <p class="card-text"><%= event_comment.content %></p>
-              </div>
-            </div>
-          <% end %>
-        </ul>
-      <%= form_with(model: @event_comment, local: true) do |form| %>
-        <div class= "field">
-          <%= form.text_area :content, :class => "form-control" %>
-          <%= form.hidden_field :event_id, :value => @event.id %>
-        </div>
-        <div class="actions">
-          
-          <%= form.submit %>
-        </div>
-       <% end %>
-  </div>
-</div>
   
 <%= form_with(model: EventComment.new, local: true) do |form| %>
   <div class="field">
@@ -85,24 +78,6 @@
     <%= form.text_area :content %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-  
-<%= form_with(model: EventRegistration.new, local: true) do |form| %>
-
-  <div class="field">
-    <%= form.hidden_field:user_id, value:current_user.id %>
-  </div>
-
-  <div class="field">
-    <%= form.hidden_field :event_id, value:@event.id %>
-  </div>
-  <div class="field">
-    <%= form.label :reason %>
-    <%= form.text_area :reason %>
-  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
