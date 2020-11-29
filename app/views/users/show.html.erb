@@ -1,0 +1,8 @@
+<h1>Profile</h1>
+<%= image_tag(current_user.image) if current_user.image.attached? %>
+<br>
+<%= current_user.name%>
+<h2>Mail address</h2>
+<%= current_user.email%>
+<br><br>
+<b><%= link_to("Edit profile", edit_user_registration_path) %></b>
