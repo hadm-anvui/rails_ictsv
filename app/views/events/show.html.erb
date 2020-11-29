@@ -25,6 +25,12 @@
   
 </p>
 
+<p>
+  <% if @event.image.attached? %>
+    <%= image_tag @event.image %>
+  <% end %>
+</p>
+
 <% if @event.if_registed(@user.id, @event.id) != 0%>
   <%= link_to "証拠を作成する", "/event_registrations/" + @event.if_registed(@user.id, @event.id).to_s %>
 <% else %>
@@ -72,5 +78,6 @@
     <%= form.submit %>
   </div>
 <% end %>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
