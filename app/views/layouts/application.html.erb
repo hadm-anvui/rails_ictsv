@@ -14,7 +14,7 @@
     <%= link_to('Home', root_path, method: :get)%>
     <% if user_signed_in? %>
     <br>
-    Hello, <%= current_user.email %>
+    Hello, <%= current_user.name %>
     <br>
     <%= link_to('Sign out', destroy_user_session_path, method: :delete)%>
     <% else %>

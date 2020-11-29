@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_one_attached :image
+ 
     has_many :event_comments
     has_many :event_proofs
     has_many :event_registrations
