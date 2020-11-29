@@ -6,7 +6,7 @@
   <thead>
     <tr>
 
-      <th>Event_name</th>
+      <th>Event</th>
       <th>Reason</th>
       <th colspan="3"></th>
     </tr>
@@ -14,9 +14,9 @@
 
   <tbody>
     <% @event_registrations.each do |event_registration| %>
-    <% if event_registration.user_id ==  2%>
+    <% if event_registration.user_id == current_user.id%>
       <tr>
-        <td><%= event_registration.event_id %></td>
+        <td><%= event_registration.event.name %></td>
         <td><%= event_registration.reason %></td>
         <td><%= link_to 'Show', event_registration %></td>
         <td><%= link_to 'Edit', edit_event_registration_path(event_registration) %></td>
@@ -29,5 +29,4 @@
 
 <br>
 
-<%= link_to 'New Event Registration', new_event_registration_path %>
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

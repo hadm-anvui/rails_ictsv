@@ -25,7 +25,6 @@ class EventCommentsController < ApplicationController
   # POST /event_comments.json
   def create
     @event_comment = EventComment.new(event_comment_params)
-    @event_comment.user_id = 1
     
     respond_to do |format|
       if @event_comment.save
