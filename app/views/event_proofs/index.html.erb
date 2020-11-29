@@ -1,31 +1,47 @@
-<p id="notice"><%= notice %></p>
+<p id="お知らせ"><%= notice%></p>
 
-<h1>Event Proofs</h1>
-
+<h1>イベントの証拠</h1>
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Event</th>
-      <th>Note</th>
+      <%
+=begin %>
+        <th>ユーザー</th>
+        <th>注意</th>
+      <%
+=end %>
+      <th>イベント</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @event_proofs.each do |event_proof| %>
+    <% if event_proof.user_id == current_user.id %>
       <tr>
-        <td><%= event_proof.user_id %></td>
-        <td><%= event_proof.event_id %></td>
-        <td><%= event_proof.note %></td>
-        <td><%= link_to 'Show', event_proof %></td>
-        <td><%= link_to 'Edit', edit_event_proof_path(event_proof) %></td>
-        <td><%= link_to 'Destroy', event_proof, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%
+=begin %>
+          <td><%= event_proof.user.email if event_proof.user  %></td>
+          <td><%= event_proof.note %></td>
+        <%
+=end %>
+        
+        <td><%= event_proof.event.name if event_proof.event  %></td>
+        <td><%= event_proof.event.startDate %></td>
+        <td><%= event_proof.event.endDate %></td>
+        <td><%= link_to '表示する', event_proof %></td>
+        <td><%= link_to '更新する', edit_event_proof_path(event_proof) %></td>
+        <td><%= link_to '削除する', event_proof, method: :delete, data: { confirm: '本気？' } %></td>
       </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Event Proof', new_event_proof_path %>
+<%
+=begin %>
+<%=  link_to 'イベントの証拠を作成する', new_event_proof_path %>
+<%
+=end %>
