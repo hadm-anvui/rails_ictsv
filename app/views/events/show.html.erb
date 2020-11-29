@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @event.name %>
@@ -25,6 +24,13 @@
   <%= @event.point %>
   
 </p>
+
+<% if @event.if_registed(@user.id, @event.id) != 0%>
+  <%= link_to "証拠を作成する", "/event_registrations/" + @event.if_registed(@user.id, @event.id).to_s %>
+<% else %>
+  <%= link_to "イベントを登録する", "/event_registrations/new" %>
+<% end %>
+<br>
 
 <div class="card-header">レビュー</div>
       <div class="card-body">
